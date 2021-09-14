@@ -5,6 +5,8 @@ class PostControl extends React.Component {
     super(props);
     this.state = {};
   }
+
+  //Next up! Write methods for adding form
 }
 
 export default PostControl;
