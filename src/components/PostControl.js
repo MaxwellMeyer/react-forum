@@ -5,17 +5,6 @@ class PostControl extends React.Component {
     super(props);
     this.state = {};
   }
-
-  render() {
-    return (
-      //
-      <>
-        {
-          //stoooop
-        }
-      </>
-    );
-  }
 }
 
 export default PostControl;

@@ -7,7 +7,13 @@ function App() {
   return (
     <React.Fragment>
       <Header />
-      <PostList />
+      <div className="container mt-3">
+        <div className="row">
+          <div className="col">
+            <PostList />
+          </div>
+        </div>
+      </div>
     </React.Fragment>
   );
 }

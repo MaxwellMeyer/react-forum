@@ -2,16 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Post(props) {
-  const title = "Post Title";
-  const title2 = "Post 2 Title";
   return (
     <>
-      <div>I'm a post named {title}!</div>
-      <div>I'm a post named {title2}!</div>
+      <div className="col-md-4 mb-3">
+        <div className="card text-center border-info">
+          <div className="card-body">
+            <h5 className="card-title">{props.title}</h5>
+            <p className="card-text">{props.body}</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
 
-Post.propTypes = {};
+Post.propTypes = {
+  title: PropTypes.string,
+  body: PropTypes.number,
+};
 
 export default Post;
