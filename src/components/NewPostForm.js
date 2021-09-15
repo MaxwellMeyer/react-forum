@@ -5,7 +5,7 @@ import PostForm from "./PostForm";
 
 function NewPostForm(props) {
   function handleNewPostFormSubmission(event) {
-    event.preventDefaulthis();
+    event.preventDefault();
     props.onNewFormCreation({
       title: event.EventTarget.title.value,
       body: event.Event.body.value,
@@ -18,5 +18,9 @@ function NewPostForm(props) {
     </>
   );
 }
+
+NewPostForm.propTypes = {
+  onNewPostCreation: PropTypes.func,
+};
 
 export default NewPostForm;
