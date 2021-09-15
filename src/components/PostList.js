@@ -7,7 +7,13 @@ function PostList(props) {
     <>
       <div className="row">
         {props.postList.map((post) => (
-          <Post title={post.title} body={post.body} key={post.id} />
+          <Post
+            whenPostClicked={props.onPostSelection}
+            title={post.title}
+            body={post.body}
+            key={post.id}
+            id={post.id}
+          />
         ))}
       </div>
     </>

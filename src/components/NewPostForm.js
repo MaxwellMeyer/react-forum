@@ -6,15 +6,19 @@ import PostForm from "./PostForm";
 function NewPostForm(props) {
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
-    props.onNewFormCreation({
-      title: event.EventTarget.title.value,
-      body: event.Event.body.value,
+    props.onNewPostCreation({
+      title: event.target.title.value,
+      body: event.target.body.value,
       id: v4(),
     });
   }
   return (
     <>
-      <PostForm formSubmissionHandler={handleNewPostFormSubmission} />
+      <PostForm
+        formSubmissionHandler={handleNewPostFormSubmission}
+        headingText="Add a Post"
+        buttonText="Add Post"
+      />
     </>
   );
 }

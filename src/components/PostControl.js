@@ -3,19 +3,16 @@ import React from "react";
 import PostList from "./PostList";
 import NewPostForm from "./NewPostForm";
 import PostDetail from "./PostDetail";
+import EditPostForm from "./EditPostForm";
 
 class PostControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      mainPostList: [
-        {
-          title: "post title",
-          body: "post body",
-        },
-      ],
+      mainPostList: [],
       selectedPost: null,
+      editing: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -25,6 +22,7 @@ class PostControl extends React.Component {
       this.setState({
         formVisibleOnPage: false,
         selectedPost: null,
+        editing: false,
       });
     } else {
       this.setState((prevState) => ({
@@ -33,11 +31,15 @@ class PostControl extends React.Component {
     }
   }
 
+  handleEditClick = () => {
+    this.setState({ editing: true });
+  };
+
   handleChangingSelectedPost = (id) => {
     const selectedPost = this.state.mainPostList.filter(
       (post) => post.id === id
     )[0];
-    this.this.setState({ selectedPost: selectedPost });
+    this.setState({ selectedPost: selectedPost });
   };
 
   handleAddingNewPostToList = (newPost) => {
@@ -45,12 +47,48 @@ class PostControl extends React.Component {
     this.setState({ mainPostList: newMainPostList, formVisibleOnPage: false });
   };
 
+  handleDeletingPost = (id) => {
+    const newMainPostList = this.state.mainPostList.filter(
+      (post) => post.id !== id
+    );
+    this.setState({
+      mainPostList: newMainPostList,
+      selectedPost: null,
+    });
+  };
+
+  handleEditingPostInList = (postToEdit) => {
+    const editedMainPostList = this.state.mainPostList
+      .filter((post) => post.id !== this.state.selectedPost.id)
+      .concat(postToEdit);
+    this.setState({
+      mainPostList: editedMainPostList,
+      editing: false,
+      selectedPost: null,
+    });
+  };
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
+    let headingText = null;
 
-    if (this.state.selectedPost != null) {
-      currentlyVisibleState = <PostDetail post={this.state.selectedPost} />;
+    if (this.state.editing) {
+      currentlyVisibleState = (
+        <EditPostForm
+          post={this.state.selectedPost}
+          onEditPost={this.handleEditingPostInList}
+        />
+      );
+      buttonText = "Return to Post List";
+    } else if (this.state.selectedPost != null) {
+      currentlyVisibleState = (
+        <PostDetail
+          post={this.state.selectedPost}
+          onClickingDelete={this.handleDeletingPost}
+          onClickingEdit={this.handleEditClick}
+        />
+      );
       buttonText = "Return to Post List";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = (
