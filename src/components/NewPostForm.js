@@ -9,14 +9,7 @@ function NewPostForm(props) {
     props.onNewPostCreation({
       title: event.target.title.value,
       body: event.target.body.value,
-      comments: [
-        {
-author: 'test author',
-body: 'test body', 
-id: v4(),
-created: Date.now()
-        }
-      ],
+      comments: [],
       id: v4(),
     });
   }

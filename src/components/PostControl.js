@@ -47,6 +47,13 @@ class PostControl extends React.Component {
     this.setState({ mainPostList: newMainPostList, formVisibleOnPage: false });
   };
 
+  handleAddingNewCommentToPost = (newComment) => {
+    let updatedPost = this.state.mainPostList.filter((post) => post.id === newComment.postId)[0]
+    updatedPost.comments.push(newComment)
+    const newMainPostList =  this.state.mainPostList.concat(updatedPost);
+    this.setState({ mainPostList: newMainPostList});
+  }
+
   handleDeletingPost = (id) => {
     const newMainPostList = this.state.mainPostList.filter(
       (post) => post.id !== id
@@ -87,6 +94,7 @@ class PostControl extends React.Component {
           post={this.state.selectedPost}
           onClickingDelete={this.handleDeletingPost}
           onClickingEdit={this.handleEditClick}
+          onNewCommentCreation={this.handleAddingNewCommentToPost}
         />
       );
       buttonText = "Return to Post List";

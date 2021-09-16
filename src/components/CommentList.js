@@ -1,6 +1,7 @@
 import React from "react";
 import Comment from "./Comment";
 import PropTypes from "prop-types";
+import NewCommentForm from "./NewCommentForm"
 
 function CommentList(props) {
   return (
@@ -16,6 +17,11 @@ function CommentList(props) {
           />
         ))}
       </div>
+      <hr />
+      <NewCommentForm
+      onNewCommentCreation = {props.onNewCommentCreation}
+      postId = {props.postId}
+      />
     </>
   );
 }

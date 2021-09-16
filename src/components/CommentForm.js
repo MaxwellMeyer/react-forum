@@ -39,7 +39,7 @@ function CommentForm(props) {
               />
             </div>
             <button className="btn btn-primary my-3" type="submit">
-              {props.buttonText}
+              Add Comment
             </button>
           </form>
         </div>

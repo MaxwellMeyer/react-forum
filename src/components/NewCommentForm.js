@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import CommentForm from "./CommentForm";
 
 function NewCommentForm(props) {
+  const postId = props.postId
   function handleNewCommentFormSubmission(event) {
     event.preventDefault();
     props.onNewCommentCreation({
@@ -11,6 +12,7 @@ function NewCommentForm(props) {
       body: event.target.body.value,
       date: Date.now(),
       id: v4(),
+      postId: postId
     });
   }
   return (

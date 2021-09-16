@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CommentList from './CommentList'
 
 function PostDetail(props) {
-  const { post, onClickingDelete } = props;
+  const { post, onClickingDelete, onNewCommentCreation } = props;
   return (
     <>
       <div className="row">
@@ -23,7 +23,10 @@ function PostDetail(props) {
           </button>
         </div>
       </div>
-      <CommentList comments={post.comments}/>
+      <CommentList 
+        onNewCommentCreation = {onNewCommentCreation}
+        comments={post.comments}
+        postId={post.id}/>
       <div className="row"><div className="col"><h2>Comments</h2>Total Comments: {post.comments.size}</div></div>
 
     </>
@@ -34,6 +37,7 @@ PostDetail.propTypes = {
   post: PropTypes.object,
   onClickingDelete: PropTypes.func,
   onClickingEdit: PropTypes.func,
+  onNewCommentCreation: PropTypes.func
 };
 
 export default PostDetail;
