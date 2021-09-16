@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CommentList from './CommentList'
 
 function PostDetail(props) {
   const { post, onClickingDelete } = props;
@@ -22,6 +23,9 @@ function PostDetail(props) {
           </button>
         </div>
       </div>
+      <CommentList comments={post.comments}/>
+      <div className="row"><div className="col"><h2>Comments</h2>Total Comments: {post.comments.size}</div></div>
+
     </>
   );
 }

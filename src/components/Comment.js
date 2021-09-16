@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Post(props) {
+function Comment(props) {
+  const date = new Date(props.created)
   return (
     <>
       <div className="col-md-4 mb-3">
         <div
-          onClick={() => props.whenPostClicked(props.id)}
           className="card text-center border-info"
         >
           <div className="card-body">
-            <h5 className="card-title">{props.title}</h5>
+            <h5 className="card-title">{props.author}</h5>
+            <em className="card-text">{date.toLocaleString('en-US')}</em>
             <p className="card-text">{props.body}</p>
           </div>
         </div>
@@ -19,10 +20,10 @@ function Post(props) {
   );
 }
 
-Post.propTypes = {
-  title: PropTypes.string,
+Comment.propTypes = {
+  author: PropTypes.string,
   body: PropTypes.string,
-  comments: PropTypes.array
+  created: PropTypes.number
 };
 
-export default Post;
+export default Comment;

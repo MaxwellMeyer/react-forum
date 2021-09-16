@@ -1,15 +1,16 @@
-function postListReducer(state = {}, action) {
-  const { title, body, id } = action;
+function commentListReducer(state = {}, action) {
+  const { author, body, created, id } = action;
   switch (action.type) {
-    case "ADD_POST":
+    case "ADD_COMMENT":
       return Object.assign({}, state, {
         [id]: {
-          title: title,
+          author: author,
           body: body,
+          created: created,
           id: id,
         },
       });
-    case "DELETE_POST":
+    case "DELETE_COMMENT":
       const newState = { ...state };
       delete newState[id];
       return newState;
@@ -18,4 +19,4 @@ function postListReducer(state = {}, action) {
   }
 };
 
-export default postListReducer;
+export default commentListReducer;
